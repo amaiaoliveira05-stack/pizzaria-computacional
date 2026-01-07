@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Pizzaria Computacional — Versão Final</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- ======================= MENU INICIAL ======================= -->
+<div id="menu-inicial">
+    <div class="menu-card">
+        <h1>🍕 Pizzaria Computacional</h1>
+
+        <button onclick="iniciarNivel(1)" class="primary">Nível 1 — Criar Pizza</button>
+        <br><br>
+
+        <button onclick="abrirSelecaoDificuldade()">Nível 2 — Autómato Aleatório</button>
+        <br><br>
+
+        <button class="danger" onclick="sair()">Sair</button>
+    </div>
+</div>
+
+<!-- ======================= MODAL DIFICULDADE ======================= -->
+<div id="modal-dificuldade" class="modal hidden">
+    <div class="modal-content">
+        <h2>Dificuldade do Autómato</h2>
+        <button onclick="escolherDificuldade('facil')">Fácil</button>
+        <button onclick="escolherDificuldade('medio')">Médio</button>
+        <button onclick="escolherDificuldade('dificil')">Difícil</button>
+
+        <br><br>
+        <button class="danger" onclick="voltarAoMenu()">Cancelar</button>
+    </div>
+</div>
+
+<!-- ======================= APLICAÇÃO PRINCIPAL ======================= -->
+<div id="app" class="hidden">
+
+    <div class="center-buttons">
+        <button onclick="trocarNivel()">Trocar Nível</button>
+        <button onclick="trocarDificuldade()">Trocar Dificuldade</button>
+        <button onclick="reiniciar()" class="danger">Reiniciar</button>
+        <button onclick="sair()">Sair</button>
+    </div>
+
+    <h1 id="titulo-nivel"></h1>
+
+    <!-- =============================================================
+         NÍVEL 1 — CRIAÇÃO DE PIZZA (massa obrigatória + distratores)
+    =============================================================== -->
+    <div id="nivel1" class="hidden">
+
+        <div class="box">
+            <h2>Ingredientes</h2>
+            <div id="ingredientes-n1" class="ingredientes-grid"></div>
+        </div>
+
+        <div class="box">
+            <h2>Montagem</h2>
+            <div id="dropzone-n1" class="dropzone">
+                <svg width="380" height="380">
+                    <circle cx="190" cy="190" r="160" fill="#e8c190"></circle>
+                    <g id="toppings-n1"></g>
+                </svg>
+            </div>
+        </div>
+
+        <div class="box">
+            <h2>Progresso</h2>
+            <ul class="progresso-lista">
+                <li id="p1">Começar pela massa</li>
+                <li id="p2">Adicionar molho / queijo</li>
+                <li id="p3">Adicionar toppings</li>
+                <li id="p4">Preparar pagamento</li>
+                <li id="p5">Pagamento</li>
+                <li id="p6">Pizza completa</li>
+            </ul>
+        </div>
+
+        <div class="box">
+            <h2>Validação</h2>
+            <ul id="log-n1" class="log"></ul>
+        </div>
+
+        <div class="center-buttons">
+            <button onclick="efetuarPagamentoN1()" class="primary">Pagar</button>
+            <button onclick="finalizarPizzaN1()">Finalizar Pizza</button>
+        </div>
+
+    </div>
+
+    <!-- =============================================================
+         NÍVEL 2 — AUTÓMATO ALEATÓRIO (circular 750x750)
+    =============================================================== -->
+    <div id="nivel2" class="hidden">
+
+        <div class="box">
+            <h2>Autómato Gerado</h2>
+
+            <!-- SVG 750x750 -->
+            <svg id="fsm-svg" width="750" height="750">
+                <g id="fsm-trans"></g>
+                <g id="fsm-states"></g>
+            </svg>
+        </div>
+
+        <div class="box">
+            <h2>Ingredientes</h2>
+            <div id="ingredientes-n2" class="ingredientes-grid"></div>
+        </div>
+
+        <div class="box">
+            <h2>Pizza Construída</h2>
+            <div id="dropzone-n2" class="dropzone">
+                <svg width="380" height="380">
+                    <circle cx="190" cy="190" r="160" fill="#e8c190"></circle>
+                    <g id="toppings-n2"></g>
+                </svg>
+            </div>
+        </div>
+
+        <div class="box">
+            <h2>Registo do Processo</h2>
+            <ul id="log-n2" class="log"></ul>
+        </div>
+
+        <!-- Formalização do autómato -->
+        <div id="formal-area" class="box">
+            <h2>Formalização</h2>
+            <pre id="formal-text" class="formal-box"></pre>
+
+            <h2>Tabela δ</h2>
+            <table id="tabela-delta" class="delta-table"></table>
+        </div>
+
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
